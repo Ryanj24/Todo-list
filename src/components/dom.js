@@ -1,6 +1,7 @@
 import '../styles/style.css'
 import { filters } from './sidebarLogic.js';
 import { lists } from './sidebarLogic.js';
+import { listModal } from './sidebarLogic.js'
 
 const createDOM = () => {
     title();

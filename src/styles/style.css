@@ -8,10 +8,14 @@ body {
     height: 100vh;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #content {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     height: 100%;
     width: 100%;
     background-color: aqua;
@@ -23,7 +27,7 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: yellow;
+    background-color: rgb(62, 171, 235);
     padding-left: 25px;
 }
 
@@ -43,7 +47,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: lightgreen;
+    background-color: rgb(222, 235, 222);
 }
 
 .sidebar .filters-div {
@@ -51,9 +55,9 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .sidebar .filters-div .task-filter {
@@ -81,13 +85,101 @@ body {
     flex-direction: column;
     width: 100%;
     padding: 15px;
-    background-color: blue;
 }
 
+.sidebar .lists-div .list-item {
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
 
+.sidebar .lists-div .list-item:hover {
+    background-color: yellow;
+    cursor: pointer;
+}
 
+.sidebar .lists-div .list-btn {
+    padding: 15px;
+    background-color: rgb(22, 197, 22);
+    margin-top: 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    width: fit-content;
+}
 
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.modal-container.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-container .modal {
+    width: 550px;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.modal-container .modal .modal-header-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 0;
+    position: relative;
+}
+
+.modal-container .modal .modal-header-div #modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    background: none;
+    border: none;
+}
+
+.modal-container .modal #modalForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 15px 25px;
+}
+
+.modal-container .modal #modalForm input {
+    padding: 10px 0 10px 20px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.modal-container .modal #modalForm button {
+    padding: 10px 30px;
+    font-size: 25px;
+    border: none;
+    border-radius: 15px;
+}
 
 .main-content {
     grid-row: 2 / -1;

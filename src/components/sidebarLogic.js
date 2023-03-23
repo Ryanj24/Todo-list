@@ -35,7 +35,90 @@ const lists = () => {
 
     listsContainer.appendChild(listsHeader);
 
+    listsContainer.appendChild(createList("Home"));
+
+    const newListBtn = document.createElement('button');
+    newListBtn.classList.add('list-btn');
+    newListBtn.textContent = "Add List";
+    newListBtn.addEventListener("click", listModal);
+
+    listsContainer.appendChild(newListBtn);
+
+
     return listsContainer;
 }
 
-export { filters, lists }
+
+function createList(name) {
+
+    const listsContainer = document.querySelector('.lists-div');
+
+    const listDiv = document.createElement('div');
+    listDiv.classList.add('list-item');
+
+    const listName = document.createElement('h2');
+    listName.textContent = name;
+
+    listDiv.appendChild(listName);
+
+    return listDiv;
+}
+
+const listModal = () => {
+    const content = document.getElementById('content');
+
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-container', 'active');
+
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    const modalHeaderDiv = document.createElement('div');
+    modalHeaderDiv.classList.add('modal-header-div');
+
+    const modalHeader = document.createElement('h1');  
+    modalHeader.textContent = 'Add New List';
+
+    const modalClose = document.createElement('button');
+    modalClose.id = 'modal-close';
+    modalClose.innerHTML = '&times';
+    modalClose.addEventListener("click", function() {
+        modalContainer.classList.remove('active');
+    })
+
+    modalHeaderDiv.appendChild(modalHeader);
+    modalHeaderDiv.appendChild(modalClose);
+
+
+    const modalForm = document.createElement('form');
+    modalForm.id = 'modalForm';
+
+    const inputField = document.createElement('input')
+    inputField.type = 'text';
+    inputField.placeholder = 'List name...';
+    const submitBtn = document.createElement('button');
+    submitBtn.type = 'submit';
+    submitBtn.textContent = 'Add List';
+
+    modalForm.appendChild(inputField);
+    modalForm.appendChild(submitBtn);
+
+    modalForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const listsContainer = document.querySelector('.lists-div');
+        const listBtn = document.querySelector('.list-btn');
+        listsContainer.insertBefore(createList(inputField.value), listBtn);
+        modalContainer.classList.remove('active');
+    })
+
+    modal.appendChild(modalHeaderDiv);
+    modal.appendChild(modalForm);
+
+    modalContainer.appendChild(modal);
+
+
+    content.appendChild(modalContainer);
+}
+
+
+export { filters, lists, listModal }
