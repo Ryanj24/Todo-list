@@ -51,8 +51,6 @@ const lists = () => {
 
 function createList(name) {
 
-    const listsContainer = document.querySelector('.lists-div');
-
     const listDiv = document.createElement('div');
     listDiv.classList.add('list-item');
 
