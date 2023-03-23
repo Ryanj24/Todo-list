@@ -1,5 +1,6 @@
 import '../styles/style.css'
-import { filters } from './sidebarFilters.js';
+import { filters } from './sidebarLogic.js';
+import { lists } from './sidebarLogic.js';
 
 const createDOM = () => {
     title();
@@ -32,6 +33,7 @@ const sidebar = () => {
 
     sidebar.appendChild(filters());
 
+    sidebar.appendChild(lists());
 
 
     content.appendChild(sidebar);

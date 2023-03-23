@@ -25,4 +25,17 @@ const filters = () => {
     return taskFilters;
 }
 
-export { filters }
+const lists = () => {
+
+    const listsContainer = document.createElement('div');
+    listsContainer.classList.add('lists-div');
+
+    const listsHeader = document.createElement('h1');
+    listsHeader.textContent = 'Lists';
+
+    listsContainer.appendChild(listsHeader);
+
+    return listsContainer;
+}
+
+export { filters, lists }
