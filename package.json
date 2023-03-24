@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Ryanj24/Todo-list#readme",
   "devDependencies": {
     "css-loader": "^6.7.3",
+    "moment": "^2.29.4",
     "style-loader": "^3.3.2",
     "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1",

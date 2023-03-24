@@ -1,4 +1,5 @@
 import '../styles/style.css'
+import moment from 'moment'
 
 
 const newTaskFactory = (title, dueDate, notes) => {
@@ -123,7 +124,9 @@ function taskElement(name, date) {
 
     const dueDate = document.createElement('div');
     dueDate.classList.add('date-div');
-    dueDate.textContent = date;
+
+    const formatDate = moment(date).format('Do MMM YYYY');
+    dueDate.textContent = formatDate;
     task.appendChild(dueDate);
 
     const btnsDiv = document.createElement('div');
