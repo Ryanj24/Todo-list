@@ -1,5 +1,11 @@
 import '../styles/style.css'
 
+
+const newTaskFactory = (title, dueDate, notes) => {
+    return { title, dueDate, notes}
+}
+
+
 const newTaskModal = () => {
     const content = document.getElementById('content');
 
@@ -79,6 +85,12 @@ const newTaskModal = () => {
     modalForm.appendChild(inputs);
     modalForm.appendChild(submitBtn);
 
+    modalForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        taskElement(inputField.value, dateInput.value)
+        modalContainer.classList.remove('active');
+    })
+
     modal.appendChild(modalHeaderDiv);
     modal.appendChild(modalForm);
 
@@ -86,6 +98,50 @@ const newTaskModal = () => {
 
 
     content.appendChild(modalContainer);
+}
+
+function taskElement(name, date) {
+
+    const tasksContainer = document.querySelector('.tasks-container');
+
+    const task = document.createElement('div');
+    task.classList.add('task-item-div');
+
+    const checkTitleDiv = document.createElement('div');
+    checkTitleDiv.classList.add('check-and-title-div');
+
+    const checkmark = document.createElement('input');
+    checkmark.type = 'checkbox';
+    checkTitleDiv.appendChild(checkmark);
+
+    const taskTitle = document.createElement('p');
+    taskTitle.textContent = name;
+    checkTitleDiv.appendChild(taskTitle);
+    
+    task.appendChild(checkTitleDiv);
+
+
+    const dueDate = document.createElement('div');
+    dueDate.classList.add('date-div');
+    dueDate.textContent = date;
+    task.appendChild(dueDate);
+
+    const btnsDiv = document.createElement('div');
+    btnsDiv.classList.add('btns-div');
+
+    const editBtn = document.createElement('i');
+    editBtn.id = 'editBtn';
+    editBtn.classList.add('fa-solid', 'fa-pen-to-square');
+    btnsDiv.appendChild(editBtn);
+
+    const removeBtn = document.createElement('i');
+    removeBtn.id = 'removeBtn';
+    removeBtn.classList.add('fa-solid', 'fa-circle-minus');
+    btnsDiv.appendChild(removeBtn);
+
+    task.appendChild(btnsDiv);
+
+    tasksContainer.appendChild(task);
 }
 
 export { newTaskModal };

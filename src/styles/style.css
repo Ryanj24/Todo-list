@@ -229,12 +229,13 @@ button:hover {
 }
 
 .main-content .tasks-container {
-    /*background-color: blueviolet;*/
+    background-color: blueviolet;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: 15px;
+    overflow: auto;
 }
 
 .main-content .tasks-container .task-item-div {
@@ -245,6 +246,7 @@ button:hover {
     background-color: pink;
     font-size: 25px;
     border-radius: 15px;
+    margin: 10px 0;
 }
 
 .main-content .tasks-container .task-item-div .check-and-title-div {
@@ -282,6 +284,10 @@ button:hover {
     margin-left: 15px;
 }
 
+.main-content .tasks-container .btns-div i:hover {
+    cursor: pointer;
+}
+
 .main-content .tasks-container .task-item-div #editBtn {
     margin-right: 50px;
 }
@@ -299,4 +305,8 @@ button:hover {
 .main-content .new-task-div i {
     font-size: 60px;
     color: rgb(9, 106, 233);
+}
+
+.main-content .new-task-div #new-task-btn {
+    cursor: pointer;
 }
