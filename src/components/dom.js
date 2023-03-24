@@ -1,6 +1,7 @@
 import '../styles/style.css'
 import { filters } from './sidebarLogic.js';
 import { lists } from './sidebarLogic.js';
+import { newTaskModal } from './mainContentLogic.js'
 //import { listModal } from './sidebarLogic.js'
 
 const createDOM = () => {
@@ -110,6 +111,7 @@ const mainContent = () => {
     const newTaskBtn = document.createElement('i');
     newTaskBtn.id = 'new-task-btn';
     newTaskBtn.classList.add('fa-solid', 'fa-circle-plus');
+    newTaskBtn.addEventListener("click", newTaskModal);
     btnDiv.appendChild(newTaskBtn);
     mainContent.appendChild(btnDiv);
 
