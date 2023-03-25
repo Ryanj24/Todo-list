@@ -63,7 +63,6 @@ function createList(name) {
 
     let listTitleString = name;
     
-    //name = ["a", "b", "c"];
     name = [];
     localStorage.setItem(`${listTitleString}`, JSON.stringify(name));
 
@@ -75,10 +74,10 @@ function createList(name) {
         listTitle.textContent = `${listTitleString}`;
         const getArr = JSON.parse(localStorage.getItem(`${listTitleString}`));
 
-        /*
+        
         for (let i = 0; i < getArr.length; i++) {
             taskElement(getArr[i].title, getArr[i].dueDate);
-        }*/
+        }
     });
 
     return listDiv;

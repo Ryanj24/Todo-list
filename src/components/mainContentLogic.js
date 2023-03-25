@@ -94,9 +94,9 @@ const newTaskModal = () => {
         e.preventDefault();
         let newTask = newTaskFactory(inputField.value, dateInput.value, noteInput.value);
         currentList.push(newTask);
+        localStorage.setItem(`${listTitle}`, JSON.stringify(currentList));
         taskElement(newTask.title, newTask.dueDate);
         
-        //currentList.push(taskElement(inputField.value, dateInput.value));
         modalContainer.classList.remove('active');
         console.log(currentList);
     })
