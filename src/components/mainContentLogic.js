@@ -98,7 +98,6 @@ const newTaskModal = () => {
         taskElement(newTask.title, newTask.dueDate);
         
         modalContainer.classList.remove('active');
-        console.log(currentList);
     })
 
     modal.appendChild(modalHeaderDiv);

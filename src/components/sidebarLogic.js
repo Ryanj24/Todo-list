@@ -38,7 +38,9 @@ const lists = () => {
 
     listsContainer.appendChild(listsHeader);
 
-    listsContainer.appendChild(createList("Home"));
+
+
+    //listsContainer.appendChild(createList("Home"));
 
     const newListBtn = document.createElement('button');
     newListBtn.classList.add('list-btn');
@@ -47,6 +49,14 @@ const lists = () => {
 
     listsContainer.appendChild(newListBtn);
 
+    let allLists = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        allLists.unshift(localStorage.key(i));
+    }
+
+    for (let i = 0; i < allLists.length; i++) {
+        listsContainer.insertBefore(createList(allLists[i]), newListBtn);
+    }
 
     return listsContainer;
 }
@@ -64,12 +74,14 @@ function createList(name) {
     let listTitleString = name;
     
     name = [];
-    localStorage.setItem(`${listTitleString}`, JSON.stringify(name));
+
+    if (!localStorage.getItem(`${listTitleString}`)) {
+        localStorage.setItem(`${listTitleString}`, JSON.stringify(name));
+    }
 
     listDiv.appendChild(listName);
     listDiv.addEventListener("click", () => {
         clearFunction();
-        const tasksContainer = document.querySelector('.tasks-container');
         const listTitle = document.getElementById('list-title');
         listTitle.textContent = `${listTitleString}`;
         const getArr = JSON.parse(localStorage.getItem(`${listTitleString}`));
