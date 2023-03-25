@@ -52,6 +52,7 @@ const mainContent = () => {
     listTitleDiv.classList.add('list-title-div');
 
     const listTitle = document.createElement('h1');
+    listTitle.id = 'list-title';
     listTitle.textContent = 'Home';
 
     listTitleDiv.appendChild(listTitle);
@@ -60,48 +61,6 @@ const mainContent = () => {
     const tasksContainer = document.createElement('div');
     tasksContainer.classList.add('tasks-container');
     mainContent.appendChild(tasksContainer);
-
-
-    /* UI Design for individual tasks */
-
-    const task = document.createElement('div');
-    task.classList.add('task-item-div');
-
-    const checkTitleDiv = document.createElement('div');
-    checkTitleDiv.classList.add('check-and-title-div');
-
-    const checkmark = document.createElement('input');
-    checkmark.type = 'checkbox';
-    checkTitleDiv.appendChild(checkmark);
-
-    const taskTitle = document.createElement('p');
-    taskTitle.textContent = "Do washing up";
-    checkTitleDiv.appendChild(taskTitle);
-    
-    task.appendChild(checkTitleDiv);
-
-
-    const dueDate = document.createElement('div');
-    dueDate.classList.add('date-div');
-    dueDate.textContent = "8/7/2023";
-    task.appendChild(dueDate);
-
-    const btnsDiv = document.createElement('div');
-    btnsDiv.classList.add('btns-div');
-
-    const editBtn = document.createElement('i');
-    editBtn.id = 'editBtn';
-    editBtn.classList.add('fa-solid', 'fa-pen-to-square');
-    btnsDiv.appendChild(editBtn);
-
-    const removeBtn = document.createElement('i');
-    removeBtn.id = 'removeBtn';
-    removeBtn.classList.add('fa-solid', 'fa-circle-minus');
-    btnsDiv.appendChild(removeBtn);
-
-    task.appendChild(btnsDiv);
-
-    tasksContainer.appendChild(task);
 
 
     /* Add new task button */

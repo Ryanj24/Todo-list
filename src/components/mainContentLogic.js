@@ -86,10 +86,19 @@ const newTaskModal = () => {
     modalForm.appendChild(inputs);
     modalForm.appendChild(submitBtn);
 
+
+    const listTitle = document.getElementById('list-title').textContent;
+    const currentList = JSON.parse(localStorage.getItem(listTitle.toString()));
+
     modalForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        taskElement(inputField.value, dateInput.value)
+        let newTask = newTaskFactory(inputField.value, dateInput.value, noteInput.value);
+        currentList.push(newTask);
+        taskElement(newTask.title, newTask.dueDate);
+        
+        //currentList.push(taskElement(inputField.value, dateInput.value));
         modalContainer.classList.remove('active');
+        console.log(currentList);
     })
 
     modal.appendChild(modalHeaderDiv);
@@ -147,4 +156,4 @@ function taskElement(name, date) {
     tasksContainer.appendChild(task);
 }
 
-export { newTaskModal };
+export { newTaskModal, taskElement, newTaskFactory };

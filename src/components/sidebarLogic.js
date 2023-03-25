@@ -1,4 +1,7 @@
 import '../styles/style.css'
+import { clearFunction } from './clearFunction.js'
+import { taskElement } from './mainContentLogic.js'
+import { newTaskFactory } from './mainContentLogic.js'
 
 const filters = () => {
     const taskFilters = document.createElement('div');
@@ -49,6 +52,7 @@ const lists = () => {
 }
 
 
+
 function createList(name) {
 
     const listDiv = document.createElement('div');
@@ -57,7 +61,25 @@ function createList(name) {
     const listName = document.createElement('h2');
     listName.textContent = name;
 
+    let listTitleString = name;
+    
+    //name = ["a", "b", "c"];
+    name = [];
+    localStorage.setItem(`${listTitleString}`, JSON.stringify(name));
+
     listDiv.appendChild(listName);
+    listDiv.addEventListener("click", () => {
+        clearFunction();
+        const tasksContainer = document.querySelector('.tasks-container');
+        const listTitle = document.getElementById('list-title');
+        listTitle.textContent = `${listTitleString}`;
+        const getArr = JSON.parse(localStorage.getItem(`${listTitleString}`));
+
+        /*
+        for (let i = 0; i < getArr.length; i++) {
+            taskElement(getArr[i].title, getArr[i].dueDate);
+        }*/
+    });
 
     return listDiv;
 }
