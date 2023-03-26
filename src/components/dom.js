@@ -2,6 +2,7 @@ import '../styles/style.css'
 import { filters } from './sidebarLogic.js';
 import { lists } from './sidebarLogic.js';
 import { newTaskModal } from './mainContentLogic.js'
+import { loadAllTasks } from './taskFilters.js';
 //import { listModal } from './sidebarLogic.js'
 
 const createDOM = () => {
@@ -53,13 +54,18 @@ const mainContent = () => {
 
     const listTitle = document.createElement('h1');
     listTitle.id = 'list-title';
-    listTitle.textContent = 'Home';
+    listTitle.textContent = 'All';
 
     listTitleDiv.appendChild(listTitle);
     mainContent.appendChild(listTitleDiv);
 
     const tasksContainer = document.createElement('div');
     tasksContainer.classList.add('tasks-container');
+
+    //tasksContainer.appendChild(loadAllTasks());
+
+    loadAllTasks();
+
     mainContent.appendChild(tasksContainer);
 
 

@@ -7,13 +7,16 @@ const filters = () => {
     const taskFilters = document.createElement('div');
     taskFilters.classList.add('filters-div')
 
-    const arr = ["Home", "Today", "Upcoming", "Past"];
+    const arr = ["All", "Today", "Upcoming", "Past"];
 
     const iconsClasses = [['fa-solid', 'fa-house'], ['fa-solid', 'fa-calendar-day'], ['fa-solid', 'fa-calendar-days'], ['fa-solid', 'fa-calendar-xmark']]
+
+    const ids = ['allTasks', 'dueToday', 'thisMonth', 'expired'];
 
     for (let i = 0; i < arr.length; i++) {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('task-filter');
+        itemDiv.id = ids[i];
         const icon = document.createElement('i');
         icon.classList.add(`${iconsClasses[i][0]}`, `${iconsClasses[i][1]}`);
         itemDiv.appendChild(icon);
@@ -24,6 +27,7 @@ const filters = () => {
 
         taskFilters.appendChild(itemDiv);
     }
+
 
     return taskFilters;
 }
@@ -39,9 +43,6 @@ const lists = () => {
     listsContainer.appendChild(listsHeader);
 
 
-
-    //listsContainer.appendChild(createList("Home"));
-
     const newListBtn = document.createElement('button');
     newListBtn.classList.add('list-btn');
     newListBtn.textContent = "Add List";
@@ -50,7 +51,7 @@ const lists = () => {
     listsContainer.appendChild(newListBtn);
 
     let allLists = [];
-    for (let i = 0; i < localStorage.length; i++) {
+    for (let i = 1; i < localStorage.length; i++) {
         allLists.unshift(localStorage.key(i));
     }
 

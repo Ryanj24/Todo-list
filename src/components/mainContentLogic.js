@@ -90,11 +90,15 @@ const newTaskModal = () => {
     const listTitle = document.getElementById('list-title').textContent;
     const currentList = JSON.parse(localStorage.getItem(listTitle.toString()));
 
+    const allTasks = JSON.parse(localStorage.getItem('All'));
+
     modalForm.addEventListener("submit", function(e) {
         e.preventDefault();
         let newTask = newTaskFactory(inputField.value, dateInput.value, noteInput.value);
         currentList.push(newTask);
+        allTasks.push(newTask);
         localStorage.setItem(`${listTitle}`, JSON.stringify(currentList));
+        localStorage.setItem('All', JSON.stringify(allTasks));
         taskElement(newTask.title, newTask.dueDate);
         
         modalContainer.classList.remove('active');
