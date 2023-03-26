@@ -2,6 +2,8 @@ import '../styles/style.css'
 import { clearFunction } from './clearFunction.js'
 import { taskElement } from './mainContentLogic.js'
 import { newTaskFactory } from './mainContentLogic.js'
+import { todaysTasks } from './taskFilters.js'
+import { monthsTasks } from './taskFilters.js'
 
 const filters = () => {
     const taskFilters = document.createElement('div');
@@ -31,6 +33,15 @@ const filters = () => {
 
     return taskFilters;
 }
+
+const filterEventListeners = () => {
+    const todaysTasksElement = document.getElementById('dueToday');
+    todaysTasksElement.addEventListener("click", todaysTasks);
+
+    const monthTasks = document.getElementById('thisMonth');
+    monthTasks.addEventListener("click", monthsTasks);
+}
+
 
 const lists = () => {
 
@@ -153,4 +164,4 @@ const listModal = () => {
 }
 
 
-export { filters, lists, listModal }
+export { filters, lists, listModal, filterEventListeners }
