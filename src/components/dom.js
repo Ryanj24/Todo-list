@@ -2,7 +2,7 @@ import '../styles/style.css'
 import { filterEventListeners, filters } from './sidebarLogic.js';
 import { lists } from './sidebarLogic.js';
 import { newTaskModal } from './mainContentLogic.js'
-import { loadAllTasks } from './taskFilters.js';
+import { allTasks, loadAllTasks } from './taskFilters.js';
 import { taskElement } from './mainContentLogic.js';
 //import { listModal } from './sidebarLogic.js'
 
@@ -64,8 +64,7 @@ const mainContent = () => {
     const tasksContainer = document.createElement('div');
     tasksContainer.classList.add('tasks-container');
 
-
-    loadAllTasks();
+    //loadAllTasks();
 
     mainContent.appendChild(tasksContainer);
 
@@ -83,10 +82,12 @@ const mainContent = () => {
 
     content.appendChild(mainContent);
 
+    allTasks();
+    /*
     const getArr = JSON.parse(localStorage.getItem('All'));
     for (let i = 0; i < getArr.length; i++) {
         taskElement(getArr[i].title, getArr[i].dueDate);
-    }
+    }*/
 }
 
 export { createDOM };

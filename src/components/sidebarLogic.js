@@ -2,18 +2,18 @@ import '../styles/style.css'
 import { clearFunction } from './clearFunction.js'
 import { taskElement } from './mainContentLogic.js'
 import { newTaskFactory } from './mainContentLogic.js'
-import { todaysTasks } from './taskFilters.js'
-import { monthsTasks } from './taskFilters.js'
+import { allTasks, todaysTasks, monthsTasks, yearsTasks } from './taskFilters.js'
+
 
 const filters = () => {
     const taskFilters = document.createElement('div');
     taskFilters.classList.add('filters-div')
 
-    const arr = ["All", "Today", "Upcoming", "Past"];
+    const arr = ["All", "Today", "This Month", "This Year"];
 
     const iconsClasses = [['fa-solid', 'fa-house'], ['fa-solid', 'fa-calendar-day'], ['fa-solid', 'fa-calendar-days'], ['fa-solid', 'fa-calendar-xmark']]
 
-    const ids = ['allTasks', 'dueToday', 'thisMonth', 'expired'];
+    const ids = ['all-Tasks', 'dueToday', 'thisMonth', 'thisYear'];
 
     for (let i = 0; i < arr.length; i++) {
         const itemDiv = document.createElement('div');
@@ -35,11 +35,18 @@ const filters = () => {
 }
 
 const filterEventListeners = () => {
+
+    const allUserTasks = document.getElementById('all-Tasks');
+    allUserTasks.addEventListener("click", allTasks);
+
     const todaysTasksElement = document.getElementById('dueToday');
     todaysTasksElement.addEventListener("click", todaysTasks);
 
     const monthTasks = document.getElementById('thisMonth');
     monthTasks.addEventListener("click", monthsTasks);
+
+    const yearTasks = document.getElementById('thisYear');
+    yearTasks.addEventListener("click", yearsTasks);
 }
 
 

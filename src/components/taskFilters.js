@@ -9,10 +9,10 @@ const todaysTasks = document.getElementById('dueToday');
     const pastTasks = document.getElementById('expired');
 */
 
-
+/*
 const loadAllTasks = () => {
 
-    const allTasksDiv = document.getElementById('allTasks');
+    const allTasksDiv = document.getElementById('all-Tasks');
 
     if (!localStorage.getItem('All')) {
         const all = [];
@@ -30,8 +30,26 @@ const loadAllTasks = () => {
             taskElement(getArr[i].title, getArr[i].dueDate);
         }
     })
-}
+}*/
 
+
+const allTasks = () => {
+    clearFunction();
+
+    if (!localStorage.getItem('All')) {
+        const all = [];
+        localStorage.setItem('All', JSON.stringify(all));
+    }
+
+    const getArr = JSON.parse(localStorage.getItem('All'));
+    const listTitle = document.getElementById('list-title');
+    listTitle.textContent = 'All';
+
+
+    for (let i = 0; i < getArr.length; i++) {
+        taskElement(getArr[i].title, getArr[i].dueDate);
+    }
+}
 
 const todaysTasks = () => {
     clearFunction();
@@ -57,7 +75,24 @@ const monthsTasks = () => {
 
     const todaysDate = new Date();
     
-    const filteredArray = getArr.filter(task => moment(task.dueDate).format('MMM') == moment(todaysDate).format("MMM"));
+    const filteredArray = getArr.filter(task => moment(task.dueDate).format('MMM YYYY') == moment(todaysDate).format("MMM YYYY"));
+    console.log(filteredArray);
+
+    for (let i = 0; i < filteredArray.length; i++) {
+        taskElement(filteredArray[i].title, filteredArray[i].dueDate)
+    }
+}
+
+const yearsTasks = () => {
+    clearFunction();
+
+    const getArr = JSON.parse(localStorage.getItem('All'));
+    const listTitle = document.getElementById('list-title');
+    listTitle.textContent = 'This Year';
+
+    const todaysDate = new Date();
+    
+    const filteredArray = getArr.filter(task => moment(task.dueDate).format('YYYY') == moment(todaysDate).format("YYYY"));
     console.log(filteredArray);
 
     for (let i = 0; i < filteredArray.length; i++) {
@@ -66,4 +101,5 @@ const monthsTasks = () => {
 }
 
 
-export { loadAllTasks, todaysTasks, monthsTasks }
+//export { loadAllTasks, allTasks, todaysTasks, monthsTasks, yearsTasks }
+export { allTasks, todaysTasks, monthsTasks, yearsTasks }
