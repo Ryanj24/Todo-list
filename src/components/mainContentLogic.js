@@ -1,5 +1,6 @@
 import '../styles/style.css'
 import moment from 'moment'
+import { taskComplete, editTask, removeTask } from './taskControls.js'
 
 
 const newTaskFactory = (title, dueDate, notes) => {
@@ -123,9 +124,18 @@ function taskElement(name, date) {
     const checkTitleDiv = document.createElement('div');
     checkTitleDiv.classList.add('check-and-title-div');
 
+    /*
     const checkmark = document.createElement('input');
     checkmark.type = 'checkbox';
-    checkTitleDiv.appendChild(checkmark);
+
+    //////////////////////////////////////////////////////
+    checkmark.class = 'taskCheckbox';
+    checkmark.name = 'task-complete';
+    
+
+
+
+    checkTitleDiv.appendChild(checkmark);*/
 
     const taskTitle = document.createElement('p');
     taskTitle.textContent = name;
@@ -149,6 +159,11 @@ function taskElement(name, date) {
     editBtn.classList.add('fa-solid', 'fa-pen-to-square');
     btnsDiv.appendChild(editBtn);
 
+    const completeBtn = document.createElement('i');
+    completeBtn.id = 'completeBtn';
+    completeBtn.classList.add('fa-solid', 'fa-check');
+    btnsDiv.appendChild(completeBtn);
+
     const removeBtn = document.createElement('i');
     removeBtn.id = 'removeBtn';
     removeBtn.classList.add('fa-solid', 'fa-circle-minus');
@@ -157,6 +172,27 @@ function taskElement(name, date) {
     task.appendChild(btnsDiv);
 
     tasksContainer.appendChild(task);
+    btnsDiv.addEventListener("click", (e) => {
+        if (e.target.id === 'completeBtn') {
+            taskComplete(e.target);
+        }
+        //else if (e.target.id === 'editBtn') {
+        //    editTask(e.target);
+        //} else if (e.target.id === 'removeBtn) {
+        //    removeTask(e.target);
+        //}
+    });
+
+
+    /*
+    btnsDiv.addEventListener("click", (e) => {
+        const currentDiv = e.target.parentNode.parentNode.firstChild;
+        if (currentDiv.firstChild.tagName == 'P') {
+            const strikethrough = document.createElement('s');
+            strikethrough.appendChild(e.target.parentNode.parentNode.firstChild.firstChild)
+            currentDiv.insertBefore(strikethrough, e.target.parentNode.parentNode.firstChild.firstChild)
+        }
+    })*/
 }
 
 export { newTaskModal, taskElement, newTaskFactory };

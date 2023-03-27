@@ -288,8 +288,9 @@ button:hover {
     cursor: pointer;
 }
 
-.main-content .tasks-container .task-item-div #editBtn {
-    margin-right: 50px;
+.main-content .tasks-container .task-item-div #completeBtn {
+    margin: 0px 20px;
+    color: rgb(21, 219, 21);
 }
 
 .main-content .tasks-container .task-item-div #removeBtn {
