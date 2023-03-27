@@ -124,18 +124,6 @@ function taskElement(name, date) {
     const checkTitleDiv = document.createElement('div');
     checkTitleDiv.classList.add('check-and-title-div');
 
-    /*
-    const checkmark = document.createElement('input');
-    checkmark.type = 'checkbox';
-
-    //////////////////////////////////////////////////////
-    checkmark.class = 'taskCheckbox';
-    checkmark.name = 'task-complete';
-    
-
-
-
-    checkTitleDiv.appendChild(checkmark);*/
 
     const taskTitle = document.createElement('p');
     taskTitle.textContent = name;
@@ -176,11 +164,9 @@ function taskElement(name, date) {
         if (e.target.id === 'completeBtn') {
             taskComplete(e.target);
         }
-        //else if (e.target.id === 'editBtn') {
-        //    editTask(e.target);
-        //} else if (e.target.id === 'removeBtn) {
-        //    removeTask(e.target);
-        //}
+        else if (e.target.id === 'removeBtn') {
+            removeTask(e.target);
+        }
     });
 
 
