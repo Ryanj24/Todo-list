@@ -45,9 +45,13 @@ const allTasks = () => {
     const listTitle = document.getElementById('list-title');
     listTitle.textContent = 'All';
 
-
+    /*
     for (let i = 0; i < getArr.length; i++) {
         taskElement(getArr[i].title, getArr[i].dueDate);
+    }*/
+
+    for (let i = 0; i < getArr.length; i++) {
+        taskElement(getArr[i].title, getArr[i].dueDate, getArr[i].complete);
     }
 }
 
@@ -62,7 +66,7 @@ const todaysTasks = () => {
     console.log(filteredArray);
 
     for (let i = 0; i < filteredArray.length; i++) {
-        taskElement(filteredArray[i].title, filteredArray[i].dueDate)
+        taskElement(filteredArray[i].title, filteredArray[i].dueDate, filteredArray[i].complete);
     }
 }
 
@@ -79,7 +83,7 @@ const monthsTasks = () => {
     console.log(filteredArray);
 
     for (let i = 0; i < filteredArray.length; i++) {
-        taskElement(filteredArray[i].title, filteredArray[i].dueDate)
+        taskElement(filteredArray[i].title, filteredArray[i].dueDate, filteredArray[i].complete);
     }
 }
 
@@ -96,7 +100,7 @@ const yearsTasks = () => {
     console.log(filteredArray);
 
     for (let i = 0; i < filteredArray.length; i++) {
-        taskElement(filteredArray[i].title, filteredArray[i].dueDate)
+        taskElement(filteredArray[i].title, filteredArray[i].dueDate, filteredArray[i].complete);
     }
 }
 

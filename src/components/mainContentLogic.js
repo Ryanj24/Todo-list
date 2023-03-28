@@ -2,9 +2,13 @@ import '../styles/style.css'
 import moment from 'moment'
 import { taskComplete, editTask, removeTask } from './taskControls.js'
 
-
+/*
 const newTaskFactory = (title, dueDate, notes) => {
     return { title, dueDate, notes}
+}*/
+
+const newTaskFactory = (title, dueDate, notes, complete) => {
+    return { title, dueDate, notes, complete}
 }
 
 
@@ -95,7 +99,7 @@ const newTaskModal = () => {
 
     modalForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        let newTask = newTaskFactory(inputField.value, dateInput.value, noteInput.value);
+        let newTask = newTaskFactory(inputField.value, dateInput.value, noteInput.value, false);
         currentList.push(newTask);
         allTasks.push(newTask);
         localStorage.setItem(`${listTitle}`, JSON.stringify(currentList));
@@ -114,7 +118,7 @@ const newTaskModal = () => {
     content.appendChild(modalContainer);
 }
 
-function taskElement(name, date) {
+function taskElement(name, date, complete) {
 
     const tasksContainer = document.querySelector('.tasks-container');
 
@@ -125,9 +129,18 @@ function taskElement(name, date) {
     checkTitleDiv.classList.add('check-and-title-div');
 
 
-    const taskTitle = document.createElement('p');
-    taskTitle.textContent = name;
-    checkTitleDiv.appendChild(taskTitle);
+    if (complete === true) {
+        const strikeTitle = document.createElement('s');
+        const taskTitle = document.createElement('p');
+        taskTitle.textContent = name;
+        strikeTitle.appendChild(taskTitle);
+        checkTitleDiv.appendChild(strikeTitle);
+    } else {
+        const taskTitle = document.createElement('p');
+        taskTitle.textContent = name;
+        checkTitleDiv.appendChild(taskTitle);
+    }
+
     
     task.appendChild(checkTitleDiv);
 

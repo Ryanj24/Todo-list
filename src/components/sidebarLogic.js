@@ -1,7 +1,6 @@
 import '../styles/style.css'
 import { clearFunction } from './clearFunction.js'
 import { taskElement } from './mainContentLogic.js'
-import { newTaskFactory } from './mainContentLogic.js'
 import { allTasks, todaysTasks, monthsTasks, yearsTasks } from './taskFilters.js'
 
 
@@ -107,7 +106,7 @@ function createList(name) {
 
         
         for (let i = 0; i < getArr.length; i++) {
-            taskElement(getArr[i].title, getArr[i].dueDate);
+            taskElement(getArr[i].title, getArr[i].dueDate, getArr[i].complete);
         }
     });
 
