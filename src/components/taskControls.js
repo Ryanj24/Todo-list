@@ -5,42 +5,116 @@ const taskComplete = (e) => {
     
     
     const listTitle = document.getElementById('list-title').textContent;
-    const allTasks = JSON.parse(localStorage.getItem('All'));
-    const currentList = JSON.parse(localStorage.getItem(listTitle.toString()));
+    const getArr = JSON.parse(localStorage.getItem('All'));
     const clickedDiv = e.parentNode.parentNode;
 
     if (listTitle === "Today") {
-        const getArr = JSON.parse(localStorage.getItem('All'));
+    
         const filteredArray = getArr.filter(task => moment(task.dueDate).format('Do MMM YYYY') == moment().format('Do MMM YYYY'));
 
         for (let i = 0; i < filteredArray.length; i++) {
             if (filteredArray[i].title === clickedDiv.firstChild.firstChild.textContent) {
-                console.log(filteredArray[i].title);
-                
+                for (let j = 0; j < getArr.length; j++) {
+                    if (getArr[j].title === filteredArray[i].title) {
+                        getArr[j].complete = true;
+                        localStorage.setItem(`All`, JSON.stringify(getArr));
+                    }
+                }
             }
         }
-    } /*else if (listTitle === "This Month") {
+
+       for (let i = 1; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const array = JSON.parse(localStorage.getItem(key));
+            for (let j = 0; j < array.length; j++) {
+                if (array[j].title === clickedDiv.firstChild.firstChild.textContent) {
+                    array[j].complete = true;
+                    localStorage.setItem(key, JSON.stringify(array));
+                }
+            }
+       }
+
+    } else if (listTitle === "This Month") {
+        const todaysDate = new Date();
+        const filteredArray = getArr.filter(task => moment(task.dueDate).format('MMM YYYY') == moment(todaysDate).format("MMM YYYY"));
+
+        for (let i = 0; i < filteredArray.length; i++) {
+            if (filteredArray[i].title === clickedDiv.firstChild.firstChild.textContent) {
+                for (let j = 0; j < getArr.length; j++) {
+                    if (getArr[j].title === filteredArray[i].title) {
+                        getArr[j].complete = true;
+                        localStorage.setItem(`All`, JSON.stringify(getArr));
+                    }
+                }
+            }
+        }
+
+        for (let i = 1; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const array = JSON.parse(localStorage.getItem(key));
+            for (let j = 0; j < array.length; j++) {
+                if (array[j].title === clickedDiv.firstChild.firstChild.textContent) {
+                    array[j].complete = true;
+                    localStorage.setItem(key, JSON.stringify(array));
+                }
+            }
+       }
 
     } else if (listTitle === "This Year") {
+        const todaysDate = new Date();
+        const filteredArray = getArr.filter(task => moment(task.dueDate).format('YYYY') == moment(todaysDate).format("YYYY"));
+
+        for (let i = 0; i < filteredArray.length; i++) {
+            if (filteredArray[i].title === clickedDiv.firstChild.firstChild.textContent) {
+                for (let j = 0; j < getArr.length; j++) {
+                    if (getArr[j].title === filteredArray[i].title) {
+                        getArr[j].complete = true;
+                        localStorage.setItem(`All`, JSON.stringify(getArr));
+                    }
+                }
+            }
+        }
+
+        for (let i = 1; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const array = JSON.parse(localStorage.getItem(key));
+            for (let j = 0; j < array.length; j++) {
+                if (array[j].title === clickedDiv.firstChild.firstChild.textContent) {
+                    array[j].complete = true;
+                    localStorage.setItem(key, JSON.stringify(array));
+                }
+            }
+       }
 
     } else {
+        const currentList = JSON.parse(localStorage.getItem(listTitle.toString()));
 
-    }*/
-
-    /*
-    for (let i = 0; i < currentList.length; i++) {
-        if (currentList[i].title === clickedDiv.firstChild.firstChild.textContent) {
-            currentList[i].complete = true;
-            localStorage.setItem(`${listTitle}`, JSON.stringify(currentList));
+        for (let i = 0; i < currentList.length; i++) {
+            if (currentList[i].title === clickedDiv.firstChild.firstChild.textContent) {
+                currentList[i].complete = true;
+                localStorage.setItem(`${listTitle}`, JSON.stringify(currentList));
+            }
         }
+    
+        for (let i = 0; i < getArr.length; i++) {
+            if (getArr[i].title === clickedDiv.firstChild.firstChild.textContent) {
+                getArr[i].complete = true;
+                localStorage.setItem('All', JSON.stringify(getArr));
+            }
+        }
+
+        for (let i = 1; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const array = JSON.parse(localStorage.getItem(key));
+            for (let j = 0; j < array.length; j++) {
+                if (array[j].title === clickedDiv.firstChild.firstChild.textContent) {
+                    array[j].complete = true;
+                    localStorage.setItem(key, JSON.stringify(array));
+                }
+            }
+       }
     }
 
-    for (let i = 0; i < allTasks.length; i++) {
-        if (allTasks[i].title === clickedDiv.firstChild.firstChild.textContent) {
-            allTasks[i].complete = true;
-            localStorage.setItem('All', JSON.stringify(allTasks));
-        }
-    }*/
 
 
     const currentDiv = e.parentNode.parentNode.firstChild;
