@@ -63,7 +63,7 @@ const todaysTasks = () => {
     listTitle.textContent = 'Today';
 
     const filteredArray = getArr.filter(task => moment(task.dueDate).format('Do MMM YYYY') == moment().format('Do MMM YYYY'));
-    console.log(filteredArray);
+    //console.log(filteredArray);
 
     for (let i = 0; i < filteredArray.length; i++) {
         taskElement(filteredArray[i].title, filteredArray[i].dueDate, filteredArray[i].complete);
@@ -80,7 +80,7 @@ const monthsTasks = () => {
     const todaysDate = new Date();
     
     const filteredArray = getArr.filter(task => moment(task.dueDate).format('MMM YYYY') == moment(todaysDate).format("MMM YYYY"));
-    console.log(filteredArray);
+    //console.log(filteredArray);
 
     for (let i = 0; i < filteredArray.length; i++) {
         taskElement(filteredArray[i].title, filteredArray[i].dueDate, filteredArray[i].complete);
@@ -97,7 +97,7 @@ const yearsTasks = () => {
     const todaysDate = new Date();
     
     const filteredArray = getArr.filter(task => moment(task.dueDate).format('YYYY') == moment(todaysDate).format("YYYY"));
-    console.log(filteredArray);
+    //console.log(filteredArray);
 
     for (let i = 0; i < filteredArray.length; i++) {
         taskElement(filteredArray[i].title, filteredArray[i].dueDate, filteredArray[i].complete);

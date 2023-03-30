@@ -130,34 +130,29 @@ const editTask = (e) => {
 }
 
 const removeTask = (e) => {
-    const listTitle = document.getElementById('list-title').textContent;
-    const allTasks = JSON.parse(localStorage.getItem('All'));
-    const currentList = JSON.parse(localStorage.getItem(listTitle.toString()));
+    const getArr = JSON.parse(localStorage.getItem('All'));
     const clickedDiv = e.parentNode.parentNode;
-
-    //console.log(listTitle);
-    //console.log(allTasks);
-    //console.log(currentList);
-    //console.log(clickedDiv.firstChild);
-    //console.log(clickedDiv.firstChild.firstChild);
+    const clickedTask = clickedDiv.firstChild.firstChild.textContent;
     
-    
-    for (let i = 0; i < currentList.length; i++) {
-        if (currentList[i].title === clickedDiv.firstChild.firstChild.textContent) {
-            currentList.splice(currentList[i], 1);
-            localStorage.setItem(`${listTitle}`, JSON.stringify(currentList));
+    for (let i = getArr.length - 1; i >= 0; i--) {
+        if (getArr[i].title === clickedTask) {
+            getArr.splice(i, 1);
+            localStorage.setItem('All', JSON.stringify(getArr));
         }
     }
 
-    for (let i = 0; i < allTasks.length; i++) {
-        if (allTasks[i].title === clickedDiv.firstChild.firstChild.textContent) {
-            allTasks.splice(allTasks[i], 1);
-            localStorage.setItem('All', JSON.stringify(allTasks));
+    for (let i = 1; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const array = JSON.parse(localStorage.getItem(key));
+        for (let j = 0; j < array.length; j++) {
+            if (array[j].title === clickedTask) {
+                array.splice(j, 1);
+                localStorage.setItem(key, JSON.stringify(array));
+            }
         }
-    }
-    clickedDiv.parentNode.removeChild(clickedDiv)
-
+   }
     
+   clickedDiv.parentNode.removeChild(clickedDiv);
 }
 
 
