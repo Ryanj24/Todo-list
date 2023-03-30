@@ -2,10 +2,6 @@ import '../styles/style.css'
 import moment from 'moment'
 import { taskComplete, editTask, removeTask } from './taskControls.js'
 
-/*
-const newTaskFactory = (title, dueDate, notes) => {
-    return { title, dueDate, notes}
-}*/
 
 const newTaskFactory = (title, dueDate, notes, complete) => {
     return { title, dueDate, notes, complete}
@@ -107,6 +103,7 @@ const newTaskModal = () => {
         taskElement(newTask.title, newTask.dueDate);
         
         modalContainer.classList.remove('active');
+        modalContainer.parentElement.removeChild(modalContainer);
     })
 
     modal.appendChild(modalHeaderDiv);
@@ -155,10 +152,11 @@ function taskElement(name, date, complete) {
     const btnsDiv = document.createElement('div');
     btnsDiv.classList.add('btns-div');
 
+    /*
     const editBtn = document.createElement('i');
     editBtn.id = 'editBtn';
     editBtn.classList.add('fa-solid', 'fa-pen-to-square');
-    btnsDiv.appendChild(editBtn);
+    btnsDiv.appendChild(editBtn);*/
 
     const completeBtn = document.createElement('i');
     completeBtn.id = 'completeBtn';
@@ -182,16 +180,6 @@ function taskElement(name, date, complete) {
         }
     });
 
-
-    /*
-    btnsDiv.addEventListener("click", (e) => {
-        const currentDiv = e.target.parentNode.parentNode.firstChild;
-        if (currentDiv.firstChild.tagName == 'P') {
-            const strikethrough = document.createElement('s');
-            strikethrough.appendChild(e.target.parentNode.parentNode.firstChild.firstChild)
-            currentDiv.insertBefore(strikethrough, e.target.parentNode.parentNode.firstChild.firstChild)
-        }
-    })*/
 }
 
 export { newTaskModal, taskElement, newTaskFactory };

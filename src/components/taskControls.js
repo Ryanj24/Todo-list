@@ -125,9 +125,6 @@ const taskComplete = (e) => {
     }
 }
 
-const editTask = (e) => {
-    ///
-}
 
 const removeTask = (e) => {
     const getArr = JSON.parse(localStorage.getItem('All'));
